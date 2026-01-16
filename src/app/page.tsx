@@ -242,34 +242,34 @@ export default function Home() {
 
     return (
         <main>
-            <Toolbar
-                onLoadFolder={handleLoadFolderClick}
-                onAnalyze={handleAnalyze}
-                onRender={() => {
-                    setRenderStatus('IDLE');
-                    setProgress(0);
-                    setError('');
-                    setResultUrl('');
-                    setShowModal(true);
-                }}
-                density={density}
-                setDensity={setDensity}
-                analyzing={analyzing}
-                analysisProgress={analysisProgress}
-                canRender={images.length > 0 && !analyzing}
-
-                showLandmarks={showLandmarks}
-                setShowLandmarks={setShowLandmarks}
-                landmarkSize={landmarkSize}
-                setLandmarkSize={setLandmarkSize}
-                landmarkColor={landmarkColor}
-                setLandmarkColor={setLandmarkColor}
-            />
-
             {images.length === 0 ? (
                 <LandingSection onLoadClick={handleLoadFolderClick} />
             ) : (
                 <>
+                    <Toolbar
+                        onLoadFolder={handleLoadFolderClick}
+                        onAnalyze={handleAnalyze}
+                        onRender={() => {
+                            setRenderStatus('IDLE');
+                            setProgress(0);
+                            setError('');
+                            setResultUrl('');
+                            setShowModal(true);
+                        }}
+                        density={density}
+                        setDensity={setDensity}
+                        analyzing={analyzing}
+                        analysisProgress={analysisProgress}
+                        canRender={images.length > 0 && !analyzing}
+
+                        showLandmarks={showLandmarks}
+                        setShowLandmarks={setShowLandmarks}
+                        landmarkSize={landmarkSize}
+                        setLandmarkSize={setLandmarkSize}
+                        landmarkColor={landmarkColor}
+                        setLandmarkColor={setLandmarkColor}
+                    />
+
                     <GalleryGrid
                         images={images}
                         density={density}
@@ -282,6 +282,8 @@ export default function Home() {
                     />
 
                     <FlaggedPanel images={images} />
+
+                    <Footer />
                 </>
             )}
 
@@ -298,15 +300,17 @@ export default function Home() {
                 imageCount={images.filter(i => !excludedIds.has(i.id)).length}
             />
 
-            <Footer />
-
             <input
                 type="file"
                 multiple
-                accept="image/*"
                 ref={fileInputRef}
                 onChange={handleFiles}
                 style={{ display: 'none' }}
+                {...({
+                    webkitdirectory: "",
+                    directory: "",
+                    mozdirectory: ""
+                } as any)}
             />
         </main>
     );

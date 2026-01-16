@@ -29,7 +29,7 @@ export interface JobState {
     resultVideoPath?: string;
 }
 
-const TEMP_BASE = path.join(os.tmpdir(), 'faceparade');
+const TEMP_BASE = path.join(os.tmpdir(), 'facelapse');
 const DATA_FILE = path.join(TEMP_BASE, 'jobs.json');
 
 // Helper to load/save

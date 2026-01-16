@@ -67,10 +67,10 @@ export function encodeVideo(options: EncodeOptions): Promise<void> {
         // Add metadata for file managers
         command
             .outputOptions([
-                '-metadata', 'title=Face Parade Video',
+                '-metadata', 'title=Face-Lapse Video',
                 '-metadata', 'description=Generated face montage video',
                 '-metadata', `creation_time=${new Date().toISOString()}`,
-                '-metadata', 'tool=FaceParade'
+                '-metadata', 'tool=Face-Lapse'
             ])
             .output(options.outputFile);
 

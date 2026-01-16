@@ -121,7 +121,7 @@ async function runRenderJob(jobId: string, inputOptions: any) {
 
         const fps = options.fps || 4;
         const format = options.format || 'mp4';
-        const outputFilename = options.filename || `faceparade_${Date.now()}.${format}`;
+        const outputFilename = options.filename || `facelapse_${Date.now()}.${format}`;
         const outputPath = path.join(jobDir, outputFilename);
 
         await encodeVideo({

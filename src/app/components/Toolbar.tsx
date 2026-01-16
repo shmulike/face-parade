@@ -38,7 +38,7 @@ export default function Toolbar({
     return (
         <div className={styles.toolbar}>
             <div className={styles.left}>
-                <div className={styles.brand}>FaceParade</div>
+                <div className={styles.brand}>Face-Lapse</div>
                 <button className={styles.btn} onClick={onLoadFolder}>
                     <FolderOpen size={18} /> Load Folder
                 </button>

@@ -1,7 +1,7 @@
 .footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border);
-    padding: 48px 20px 32px;
+    padding: 24px 20px;
     margin-top: 60px;
     color: var(--text-secondary);
 }
@@ -9,34 +9,85 @@
 .content {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.legalLinks {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 .section {
-    margin-bottom: 32px;
+    position: relative;
+    cursor: default;
 }
 
-.section h3 {
+.tooltipHeader {
     color: var(--text-primary);
-    font-size: 1.1rem;
-    margin-bottom: 12px;
+    font-size: 0.95rem;
     font-weight: 600;
+    margin: 0;
+    border-bottom: 1px dashed var(--text-secondary);
+    padding-bottom: 2px;
 }
 
-.section p {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 12px;
-}
-
-.section p strong {
+.tooltipHeader:hover {
     color: var(--accent);
-    font-weight: 600;
+    border-color: var(--accent);
 }
 
-.divider {
-    height: 1px;
-    background: var(--border);
-    margin: 32px 0;
+.tooltipContent {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    width: 320px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.tooltipContent::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--bg-tertiary) transparent transparent transparent;
+}
+
+.section:hover .tooltipContent {
+    visibility: visible;
+    opacity: 1;
+    bottom: 135%;
+}
+
+.tooltipContent p {
+    margin-bottom: 8px;
+}
+
+.tooltipContent p:last-child {
+    margin-bottom: 0;
+}
+
+.tooltipContent strong {
+    color: var(--accent);
 }
 
 .brand {
@@ -44,33 +95,25 @@
 }
 
 .signature {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-primary);
-    margin-bottom: 8px;
 }
 
 .signature strong {
     color: var(--accent);
 }
 
-.tagline {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-@media (min-width: 768px) {
-    .content {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px 60px;
+@media (max-width: 768px) {
+    .legalLinks {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .divider {
-        grid-column: 1 / -1;
-    }
-
-    .brand {
-        grid-column: 1 / -1;
+    .tooltipContent {
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 280px;
     }
 }

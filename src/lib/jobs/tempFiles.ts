@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import os from 'os';
 
-const TEMP_BASE = path.join(os.tmpdir(), 'faceparade');
+const TEMP_BASE = path.join(os.tmpdir(), 'facelapse');
 
 export async function initTempDir() {
     try {

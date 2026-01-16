@@ -1,5 +1,6 @@
 import { Video, Shield, Sparkles } from 'lucide-react';
 import styles from './LandingSection.module.css';
+import Fireworks from './Fireworks';
 
 interface LandingSectionProps {
     onLoadClick: () => void;
@@ -8,6 +9,7 @@ interface LandingSectionProps {
 export default function LandingSection({ onLoadClick }: LandingSectionProps) {
     return (
         <div className={styles.landing}>
+            <Fireworks />
             <div className={styles.content}>
                 <div className={styles.brand}>From Shmulik Creations</div>
 
@@ -17,25 +19,8 @@ export default function LandingSection({ onLoadClick }: LandingSectionProps) {
                 </h1>
 
                 <p className={styles.tagline}>
-                    Transform your photo collection into stunning face-aligned video montages.
-                    <span className={styles.highlight}> All processing happens locally on your device</span>—your
-                    photos never leave your computer, ensuring complete privacy and security.
+                    Transform your photo collection into stunning face-aligned video montages
                 </p>
-
-                <div className={styles.features}>
-                    <div className={styles.feature}>
-                        <Shield size={24} />
-                        <span>100% Private - No Uploads</span>
-                    </div>
-                    <div className={styles.feature}>
-                        <Sparkles size={24} />
-                        <span>AI-Powered Face Alignment</span>
-                    </div>
-                    <div className={styles.feature}>
-                        <Video size={24} />
-                        <span>Professional Video Export</span>
-                    </div>
-                </div>
 
                 <button onClick={onLoadClick} className={styles.startButton}>
                     Get Started - Load Your Images
@@ -44,6 +29,10 @@ export default function LandingSection({ onLoadClick }: LandingSectionProps) {
                 <p className={styles.subtitle}>
                     Select a folder of photos and watch Face-Lapse automatically align faces for smooth, professional results.
                 </p>
+            </div>
+
+            <div className={styles.copyright}>
+                © {new Date().getFullYear()} All rights reserved. Shmulik Creations
             </div>
         </div>
     );
