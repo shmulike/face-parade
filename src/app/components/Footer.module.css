@@ -1,0 +1,76 @@
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 48px 20px 32px;
+    margin-top: 60px;
+    color: var(--text-secondary);
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    margin-bottom: 32px;
+}
+
+.section h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.section p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.section p strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+}
+
+.brand {
+    text-align: center;
+}
+
+.signature {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.signature strong {
+    color: var(--accent);
+}
+
+.tagline {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+@media (min-width: 768px) {
+    .content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 60px;
+    }
+
+    .divider {
+        grid-column: 1 / -1;
+    }
+
+    .brand {
+        grid-column: 1 / -1;
+    }
+}

@@ -5,6 +5,8 @@ import Toolbar from './components/Toolbar';
 import GalleryGrid from './components/GalleryGrid';
 import FlaggedPanel from './components/FlaggedPanel';
 import GenerateModal from './components/GenerateModal';
+import LandingSection from './components/LandingSection';
+import Footer from './components/Footer';
 import { ImageItem } from '@/lib/jobs/jobStore';
 
 // Poll interval
@@ -264,18 +266,24 @@ export default function Home() {
                 setLandmarkColor={setLandmarkColor}
             />
 
-            <GalleryGrid
-                images={images}
-                density={density}
-                onReorder={handleReorder}
-                onToggleExclude={handleToggleExclude}
-                excludedIds={excludedIds}
-                showLandmarks={showLandmarks}
-                landmarkSize={landmarkSize}
-                landmarkColor={landmarkColor}
-            />
+            {images.length === 0 ? (
+                <LandingSection onLoadClick={handleLoadFolderClick} />
+            ) : (
+                <>
+                    <GalleryGrid
+                        images={images}
+                        density={density}
+                        onReorder={handleReorder}
+                        onToggleExclude={handleToggleExclude}
+                        excludedIds={excludedIds}
+                        showLandmarks={showLandmarks}
+                        landmarkSize={landmarkSize}
+                        landmarkColor={landmarkColor}
+                    />
 
-            <FlaggedPanel images={images} />
+                    <FlaggedPanel images={images} />
+                </>
+            )}
 
             <GenerateModal
                 jobId={jobId}
@@ -290,13 +298,15 @@ export default function Home() {
                 imageCount={images.filter(i => !excludedIds.has(i.id)).length}
             />
 
+            <Footer />
+
             <input
                 type="file"
                 multiple
+                accept="image/*"
                 ref={fileInputRef}
-                style={{ display: 'none' }}
                 onChange={handleFiles}
-                {...({ webkitdirectory: "", directory: "" } as any)}
+                style={{ display: 'none' }}
             />
         </main>
     );
