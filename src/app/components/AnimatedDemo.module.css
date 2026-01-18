@@ -1,0 +1,108 @@
+.demoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.beforePanel,
+.afterPanel {
+    position: relative;
+    background: rgba(15, 15, 25, 0.6);
+    border-radius: 20px;
+    padding: 30px;
+    border: 2px solid rgba(139, 92, 246, 0.2);
+}
+
+.panelLabel {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    font-family: 'Bungee', sans-serif;
+    letter-spacing: 2px;
+}
+
+.messyGrid {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
+}
+
+.messyPhoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 100, 100, 0.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.messyPhoto:hover {
+    transform: scale(1.05) !important;
+}
+
+.videoFrame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: rgba(10, 10, 20, 0.8);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(100, 255, 100, 0.6);
+    box-shadow: 0 0 30px rgba(100, 255, 100, 0.3);
+}
+
+.alignedPhoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.frameCounter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(139, 92, 246, 0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.caption {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+@media (max-width: 900px) {
+    .demoContainer {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}

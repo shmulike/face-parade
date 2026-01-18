@@ -35,7 +35,25 @@ async function runRenderJob(jobId: string, inputOptions: any) {
         const width = options.width || 1080;
         const height = options.height || 1920;
 
-        const validImages = images.filter(img => img.landmarks && img.landmarks.length > 0);
+        // Better validation: check if landmarks exist and are a non-empty array
+        console.log('[RENDER] Total images:', images.length);
+        console.log('[RENDER] Image analysis states:', images.map(img => ({
+            id: img.id,
+            faceCount: img.faceCount,
+            flagged: img.flagged,
+            hasLandmarks: !!img.landmarks,
+            landmarksLength: img.landmarks ? img.landmarks.length : 0
+        })));
+
+        const validImages = images.filter(img => {
+            const isValid = img.landmarks && Array.isArray(img.landmarks) && img.landmarks.length > 0 && !img.flagged;
+            if (!isValid) {
+                console.log(`[RENDER] Image ${img.id} excluded: landmarks=${!!img.landmarks}, isArray=${Array.isArray(img.landmarks)}, length=${img.landmarks?.length}, flagged=${img.flagged}`);
+            }
+            return isValid;
+        });
+
+        console.log('[RENDER] Valid images after filter:', validImages.length);
 
         if (validImages.length === 0) {
             updateJob(jobId, { status: 'ERROR', error: 'No analyzed images with faces found' });

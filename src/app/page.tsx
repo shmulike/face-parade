@@ -174,6 +174,28 @@ export default function Home() {
         if (!jobId) return;
 
         setError('');
+
+        // Check if images have been analyzed (have landmarks)
+        const analyzedCount = images.filter(i => i.landmarks && i.landmarks.length > 0).length;
+
+        if (analyzedCount === 0) {
+            // Auto-analyze before rendering
+            console.log('[RENDER] No analyzed images found, running analysis first...');
+            setRenderStatus('RENDERING');
+            setStepMessage('Analyzing faces before rendering...');
+
+            try {
+                await handleAnalyze();
+                // Wait a moment for state to update
+                await new Promise(resolve => setTimeout(resolve, 500));
+            } catch (err) {
+                console.error('[RENDER] Auto-analysis failed:', err);
+                setRenderStatus('ERROR');
+                setError('Failed to analyze images before rendering');
+                return;
+            }
+        }
+
         setRenderStatus('RENDERING');
         setProgress(0);
 

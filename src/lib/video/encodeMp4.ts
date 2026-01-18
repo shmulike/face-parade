@@ -58,21 +58,13 @@ export function encodeVideo(options: EncodeOptions): Promise<void> {
                     '-profile:v high',
                     '-level 4.0',
                     '-movflags +faststart',
-                    `-s ${options.width}x${options.height}`,
                     '-preset medium',
                     '-crf 23',
                 ]);
         }
 
-        // Add metadata for file managers
-        command
-            .outputOptions([
-                '-metadata', 'title=Face-Lapse Video',
-                '-metadata', 'description=Generated face montage video',
-                '-metadata', `creation_time=${new Date().toISOString()}`,
-                '-metadata', 'tool=Face-Lapse'
-            ])
-            .output(options.outputFile);
+        // Metadata removed temporarily due to fluent-ffmpeg formatting issues
+        command.output(options.outputFile);
 
         if (options.onProgress) {
             command.on('progress', (progress) => {
